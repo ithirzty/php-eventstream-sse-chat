@@ -1,4 +1,5 @@
   <?php
+//Project made from https://github.com/ithirzty/php-eventstream-sse-chat
   date_default_timezone_set("Europe/Paris");
   header("Content-Type: text/event-stream\n\n");
     $nb = -1;
