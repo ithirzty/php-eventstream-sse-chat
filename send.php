@@ -1,4 +1,5 @@
 <?php
+//Project made from https://github.com/ithirzty/php-eventstream-sse-chat
 session_start();
 
 //VARS TO SET
