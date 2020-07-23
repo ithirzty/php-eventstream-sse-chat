@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Api template</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  </head>
+  <body>
+    <main>
+
+  <section id="chat" class="chat">
+  
+  <div id="chatinn">
+  
+  </div>
+  
+  </section>
+
+<input id="input" type="text" placeholder="Message" style="color:black" autocomplete="off" />
+<button onclick="send($('#input').val());"><i class="material-icons">send</i></button>
+
+</main>
+    <script>
+ $('#input').keypress(function(e) {
+    var keycode = (e.keyCode ? e.keyCode : e.which);
+    if (keycode == '13') {
+        send($('#input').val());
+    }
+});
+function send(msg) {
+  $.get('./send.php?msg='+encodeURIComponent(msg));
+  $('#input').val('');
+  $('#input').focus();
+}
+
+var evtSource = new EventSource("./refresh.php");
+evtSource.onmessage = function(e) {
+  item = JSON.parse(e.data);
+  console.log(item);
+      if(item.m != undefined) {
+$('#chatinn').append('<p><strong>'+owner+'<a style="color:#" href="/pf?'+encodeURIComponent(item.p)+'" target="_parent">'+item.p+'</a></strong>:<span class="message"> '+item.m+'</span></p>');
+      $("#chat").animate({ scrollTop: $("#chatinn").height() }, "slow");
+    }
+};
+    </script>
+  </body>
+</html>
