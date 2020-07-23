@@ -14,16 +14,16 @@
       foreach($chat as $time => $msg){
         if ($time > $lasttime) {
         foreach($msg as $username => $message) {
-          $return = ['message' => $msg, 'username' =>$username, 'time' => $time];
+          $return = ['message' => $message, 'username' => $username, 'time' => $time];
         echo 'data: '.json_encode($return)."\n\n";
       }
     }
     }
     $lasttime = $chattime;
-      echo "event: ping\n";
-      $curDate = date(DATE_ISO8601);
-      echo 'data: {"time": "' . $curDate . '"}';
     }
+    echo "event: ping\n";
+    $curDate = date(DATE_ISO8601);
+    echo 'data: {"time": "' . $curDate . '"}'."\n\n";
       ob_end_flush();
       flush();
       $nb++;
