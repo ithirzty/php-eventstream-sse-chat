@@ -37,9 +37,8 @@ function send(msg) {
 var evtSource = new EventSource("./refresh.php");
 evtSource.onmessage = function(e) {
   item = JSON.parse(e.data);
-  console.log(item);
-      if(item.m != undefined) {
-$('#chatinn').append('<p><strong>'+owner+'<a style="color:#" href="/pf?'+encodeURIComponent(item.p)+'" target="_parent">'+item.p+'</a></strong>:<span class="message"> '+item.m+'</span></p>');
+      if(item.message != undefined) {
+$('#chatinn').append('<p><strong>'+item.username+'</strong>:<span class="message"> '+item.message+'</span></p>');
       $("#chat").animate({ scrollTop: $("#chatinn").height() }, "slow");
     }
 };
