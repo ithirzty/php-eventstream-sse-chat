@@ -7,7 +7,7 @@ $time_between_message = 1; //time to pass between two message send by the same u
 $message_max_length = 200; //max length of a message
 
 
-if($_GET['message'] != '' && strlen($_GET['msg']) <= $message_max_length) {
+if($_GET['msg'] != '' && strlen($_GET['msg']) <= $message_max_length) {
 $message = [$username => htmlspecialchars($_GET['msg'])];
   if(time() - $_SESSION['lastmsginchat'] >= $time_between_message) {
     $msgs = apc_fetch('chat');
