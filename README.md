@@ -13,4 +13,4 @@ Then edit php.ini (/etc/php/*your php version*/apache2/php.ini) to set ```opcach
 The most important thing to do before deploying this chat is to edit the variables in send.php. Username variable can be set to something like $_SESSION['username'].
 
 ## Licensing
-You are free to use this code as you wan't but it would be cool to be mentioned somewhere :).
+You are free to use this code as you wan't but it would be cool to be mentioned (https://github.com/ithirzty/php-eventstream-sse-chat) somewhere :).
