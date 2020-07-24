@@ -1,5 +1,6 @@
 # php-eventstream-sse-chat
 A simple and more customizable version of https://alois.xyz 's chat.
+> No database, light weight, simple to use.
 
 ## Pre-requisits
 * For this code to work, you will need an apache server with php (not php fpm because of buffer issues) enabled.
