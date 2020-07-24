@@ -2,6 +2,8 @@
 A simple and more customizable version of https://alois.xyz 's chat.
 > No database, light weight, simple to use.
 
+#### Demo https://alois.xyz/php-eventstream-sse-chat-master/index.php
+
 ### Why using server sent events?
 Server sent events allow you to save alot of bandwith and simple managment.
 
