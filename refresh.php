@@ -2,13 +2,13 @@
 //Project made from https://github.com/ithirzty/php-eventstream-sse-chat
   date_default_timezone_set("Europe/Paris");
   header("Content-Type: text/event-stream\n\n");
-    $nb = -1;
-    while ($nb < 30) {
+    $firstrun = 1;
+    while (true) {
       $chat = apc_fetch('chat');
       $chattime = end(array_keys($chat));
-      if($nb === -1) {
+      if($firstrun === 1) {
         $lasttime = $chattime;
-        $nb = 0;
+        $firstrun = 0;
       }
       if($lasttime < $chattime) {
         $newchat = [];
@@ -27,6 +27,8 @@
     echo 'data: {"time": "' . $curDate . '"}'."\n\n";
       ob_end_flush();
       flush();
-      $nb++;
+        if(connection_aborted()) {
+    die();
+  }
       sleep(1);
     }
