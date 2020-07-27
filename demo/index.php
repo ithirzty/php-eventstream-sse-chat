@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_GET['username']) and strlen($_GET['username']) < 200) {
+if($_GET['username'] != '' and strlen($_GET['username']) < 200) {
   $_SESSION['username'] = htmlspecialchars($_GET['username']);
 }
  ?>
@@ -30,7 +30,7 @@ if(isset($_GET['username']) and strlen($_GET['username']) < 200) {
 </main>
     <script>
     <?php
-if($_SESSION['username'] == null) {
+if($_SESSION['username'] == '' OR $_SESSION['username'] == 'null') {
   echo '
 var username = prompt("Please enter your username:", "guest");
 if(username != "") {
@@ -57,10 +57,15 @@ function send(msg) {
 var evtSource = new EventSource("./refresh.php");
 evtSource.onmessage = function(e) {
   item = JSON.parse(e.data);
+  if(item.error != undefined) {
+    $('#chatinn').append('<p style="color:red"><strong>'+item.error+'</strong></p>');
+          $("#chat").animate({ scrollTop: $("#chatinn").height() }, "slow");
+  }else {
       if(item.message != undefined) {
 $('#chatinn').append('<p><strong>'+item.username+'</strong>:<span class="message"> '+item.message+'</span></p>');
       $("#chat").animate({ scrollTop: $("#chatinn").height() }, "slow");
     }
+  }
 };
     </script>
   </body>
