@@ -3,7 +3,7 @@
   date_default_timezone_set("Europe/Paris");
   header("Content-Type: text/event-stream\n\n");
     $nb = -1;
-    while ($nb < 30) {
+    while (true) {
       $chat = apc_fetch('chat');
       $chattime = end(array_keys($chat));
       if($nb === -1) {
@@ -27,6 +27,8 @@
     echo 'data: {"time": "' . $curDate . '"}'."\n\n";
       ob_end_flush();
       flush();
-      $nb++;
+    if(connection_aborted()) {
+    die();
+  }
       sleep(1);
     }
